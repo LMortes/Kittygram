@@ -11,18 +11,21 @@ services:
     env_file: .env
     volumes:
       - pg_data:/var/lib/postgres/data
+
   backend:
     image: lpollot/kittygram_backend
     env_file: .env
     volumes:
       - static:/static/
       - media:/app/media
+
   frontend:
     env_file: .env
     image: lpollot/kittygram_frontend
     command: cp -r /app/build/. /static/
     volumes:
       - static:/static
+
   gateway:
     image: lpollot/kittygram_gateway
     env_file: .env
